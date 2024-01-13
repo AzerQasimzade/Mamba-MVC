@@ -1,4 +1,7 @@
-﻿<div class="main-panel">
+﻿@using MambaTemplate.Models;
+@model List<Worker>
+
+<div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -8,7 +11,7 @@
                         <p class="card-description">
                             Worker Table
                         </p>
-                        <a class="btn btn-success">Create Category</a>
+                        <a href="/MambaAdmin/Worker/Create" class="btn btn-success">Create Worker</a>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -34,28 +37,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="py-1">
-                                            <img src="~/admin/images/faces/face1.jpg" alt="image" />
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Herman
-                                        </td>
-                                        <td>
-                                            Beck
-                                        </td>
-                                        <td>
-                                            Engineer
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-warning"><i class="mdi mdi-airballoon"></i></a>
-                                            <a class="btn btn-danger"><i class="mdi mdi-delete-variant"></i></a>
-                                            <a class="btn btn-primary"><i class="mdi mdi-panda"></i></a>
-                                        </td>
-                                    </tr>
+                                   @foreach (var workers in Model)
+                                        {
+                                        <tr>
+                                            <td class="py-1">
+                                                <img src="~/admin/images/faces/@workers.Image" alt="image" />
+                                            </td>
+                                            <td>
+                                                @workers.Id
+                                            </td>
+                                            <td>
+                                                @workers.Name
+                                            </td>
+                                            <td>
+                                                @workers.Surname
+                                            </td>
+                                            <td>
+                                                @workers.Profession.Name
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning" href="/MambaAdmin/Worker/Update/@workers.Id"><i class="mdi mdi-airballoon"></i></a>
+                                                <a class="btn btn-danger" href="/MambaAdmin/Worker/Delete/@workers.Id"><i class="mdi mdi-delete-variant"></i></a>
+                                            </td>
+                                        </tr>
+                                        }      
                                 </tbody>
                             </table>
                         </div>

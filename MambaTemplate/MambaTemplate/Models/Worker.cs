@@ -1,4 +1,6 @@
-﻿namespace MambaTemplate.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MambaTemplate.Models
 {
     public class Worker
     {
@@ -7,6 +9,8 @@
         public string Surname { get; set; }
         public int ProfessionId { get; set; }
         public Profession Profession { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
+        [NotMapped]
+        public IFormFile? Photo { get; set; }
     }
 }
